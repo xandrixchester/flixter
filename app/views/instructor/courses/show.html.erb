@@ -1,43 +1,40 @@
+<script>
+  $(function() {
+    alert('hi');
+  });
+</script>
+
+
 <br />
 
+<br />
 <div class="booyah-box col-10 offset-1">
-  <h1><%= @course.title %></h1>
-
-    <%= image_tag @course.image.to_s, class: 'img-fluid' %>
-    
+  <h1 class="text-center"><%= @course.title %></h1>
   <br />
-  <div class="row">
-    <div class="col-sm-4 col-12">
-      <span class="badge badge-default">
-        <%= number_to_currency @course.cost %>
-      </span>
+  <%= link_to 'Preview As Student...', course_path(@course), class: 'btn btn-warning float-right' %>
+  <br class="clr" />
 
-      <% if current_user && current_user == @course.user %>
-        <br />
-        <br />
-        <%= link_to 'Administer', instructor_course_path(@course), class: 'btn btn-danger btn-large' %>
-      <% end %>
-    </div>
-
-    <div class="col-sm-8 col-12">
-      <%= @course.description %>
-    </div>
+  <div class="text-center">
+    <%= link_to 'Add a new section...', new_instructor_course_section_path(@course), class: 'btn btn-primary btn-lg' %>
   </div>
 
-  <div class="col-12">
+  <ul>
     <% @course.sections.each do |section| %>
-      <div class="section">
+      <li>
         <%= section.title %>
-        <% section.lessons.rank(:row_order).each do |lesson| %>
-          <div class="lesson">
-            <%= link_to lesson_path(lesson) do %>
+        <%= link_to 'New Lesson', new_instructor_section_lesson_path(section), class: 'float-right btn btn-primary btn-sm' %>
+        <ul>
+          <% section.lessons.rank(:row_order).each do |lesson| %>
+            <li>
               <b><%= lesson.title %></b>
               -
               <%= lesson.subtitle %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+            </li>
+          <% end %>
+        </ul>
+        <br class="clr" />
+      </li>
     <% end %>
-  </div>
+  </ul>
+
 </div>
