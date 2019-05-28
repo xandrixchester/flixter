@@ -21,7 +21,8 @@ private
 
 	def require_authorized_for_current_lesson
 		if current_lesson.section.course.user != current_user
-		redirect_to course_path, alert: 'You are not enrolled in this course'
+			redirect_to course_path, alert: 'You are not enrolled in this course'
+		end
 	end
 
   helper_method :current_lesson
