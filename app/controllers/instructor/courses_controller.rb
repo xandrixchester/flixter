@@ -16,6 +16,7 @@ before_action :authenticate_user!
   end
 
   def show
+    @section = Section.new
   end
 
   private
