@@ -32,4 +32,5 @@ class EnrollmentsController < ApplicationController
 
 	def current_course
 		@current_course ||= Course.find(params[:course_id])
+  end
 end
