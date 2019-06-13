@@ -4,22 +4,32 @@
   <h1 class="text-center">Learn something today</h1>
   <hr />
 
-  <% @courses.each do |course| %>
-     <h2 class="text-center">
+  <div class="container">
+    <% @courses.each do |course| %>
+      <h2 class="text-center">
       <%= link_to course.title, course_path(course) %>
-    </h2>
-   <div class="row">
-    <div class="col-sm-8 col-12">
-      <%= image_tag course.image.to_s, class: 'img-fluid' %>
-    </div>
-    <div class="row">
-	    <div class="col-sm-8 col-12">
-	      <%= course.description %>
-	    </div>
-	    <div class="col-sm-4 col-12 text-center">
-        <%= link_to 'More Details...', course_path(course), class: 'btn btn-primary btn-large' %>
-	    </div>
-   	</div>
-   	<br class="clr" />
-  <% end %>
+      </h2>
+
+      <div class="row">
+        <div class="col-sm-8 col-10">
+          <%= image_tag course.image.to_s, class: 'img-fluid' %>
+        </div>
+
+        <br class="clr" />
+
+        <div class="col-sm-8 col-10 text-center">
+          <%= course.description %>
+        </div>
+
+        <br class="clr" />
+
+        <div class="row float-right">
+          <div class="col-sm-4 col-10">
+            <%= link_to 'More Details...', course_path(course), class: 'btn btn-primary btn-large' %>
+          </div>
+        </div>
+      </div>
+      <br class="clr" />
+    <% end %>
+  </div>
 </div>
